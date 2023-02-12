@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, /* useContext */ } from "react";
 
-import FormInput from "../../components/form-input/form-input.component.";
-import Button from "../../components/button/button.component";
+import FormInput from "../form-input/form-input.component.";
+import Button from "../button/button.component";
 
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from "../../utils/firebase/firebase.utils";
+
+// import { UserContext } from "../../context/user.context";
 
 import './sign-up-form.styles.scss';
 
@@ -15,10 +17,10 @@ const defaultFormValues = {
 }
 
 const SignUpForm = () => {
-  const [formFields, setFormFields] = useState(defaultFormValues);
-  const {displayName, email, password, confirmPassword} = formFields;
+  const [ formFields, setFormFields ] = useState(defaultFormValues);
+  const { displayName, email, password, confirmPassword } = formFields;
 
-  // console.log(formFields);
+  // const { setCurrentUser } = useContext(UserContext);
 
   const resetFormFields = () => {
     setFormFields(defaultFormValues);
@@ -35,8 +37,9 @@ const SignUpForm = () => {
     try {
       const { user } = await createAuthUserWithEmailAndPassword(email, password);
       //create a user document
-      await createUserDocumentFromAuth(user, { displayName });
+      // setCurrentUser(user);
 
+      await createUserDocumentFromAuth(user, { displayName });
       resetFormFields();
     } catch (err) {
       if (err.code === 'auth/email-already-in-use') {
@@ -48,9 +51,9 @@ const SignUpForm = () => {
   }
 
   const handleChange = (evt) => {
-    const {name, value} = evt.target;
+    const { name, value } = evt.target;
 
-    setFormFields({...formFields, [name]: value});
+    setFormFields({ ...formFields, [ name ]: value });
   }
 
   return (
