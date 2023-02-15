@@ -1,30 +1,39 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 import { CartContext } from "../../context/cart.context";
 
+import CheckOutItems from "../../components/checkout-items/checkout-items.component";
+
+import './checkout.styles.scss';
+
 const CheckOut = () => {
-  const { cartItems, addItemToCart, cartCount } = useContext(CartContext);
+  const { cartItems, cartTotal } = useContext(CartContext);
 
-  const cartCountDecrement = () => {
-
-  }
+  // const handleCartTotal = () => total(cartItems);
 
   return (
-    <div>
-      <div>
-        <h4>Product</h4>
-        <h4>Description</h4>
-        <h4>Quantity</h4>
-        <h4>Price</h4>
-        <h4>Remove</h4>
+    <div className='checkout-container'>
+      <div className='checkout-header'>
+        <div className='header-block'>
+          <span>Product</span>
+        </div>
+        <div className='header-block'>
+          <span>Description</span>
+        </div>
+        <div className='header-block'>
+          <span>Quantity</span>
+        </div>
+        <div className='header-block'>
+          <span>Price</span>
+        </div>
+        <div className='header-block'>
+          <span>Remove</span>
+        </div>
       </div>
-      <div>
-        <img src="https://i.ibb.co/ZYW3VTp/brown-brim.png" alt=""/>
-        <h2>Blue Jean Jacket</h2>
-        <button>{ '<' }</button><h2>{ cartCount }</h2><button>{ '>' }</button>
-        <h2>90</h2>
-        <h2>X</h2>
-      </div>
+      {cartItems.map((cartItem) => (
+        <CheckOutItems key={cartItem.id} cartItem={cartItem}/>
+      ))}
+      <span className='total'>{`$${cartTotal}`}</span>
     </div>
   )
 }
