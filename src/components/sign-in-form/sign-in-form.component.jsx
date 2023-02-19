@@ -10,7 +10,7 @@ import Button from "../button/button.component";
 
 // import { UserContext } from "../../context/user.context";
 
-import './sign-in-form.styles.scss';
+import { SignInContainer } from "./sign-in-form.styles";
 
 const defaultFormValues = {
   email: '',
@@ -60,7 +60,7 @@ const SignInForm = () => {
   }
 
   return (
-    <div className='sign-in-container'>
+    <SignInContainer className='sign-in-container'>
       <h1>Sign In Page</h1>
       <h2>I already have an account</h2>
       <span>Sign in with your email and password</span>
@@ -87,7 +87,7 @@ const SignInForm = () => {
           <Button type='button' buttonType='google' onClick={signInWithGoogle} >Google Sign In</Button>
         </div>
       </form>
-    </div>
+    </SignInContainer>
   )
 }
 

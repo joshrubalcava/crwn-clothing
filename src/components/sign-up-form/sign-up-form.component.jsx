@@ -7,7 +7,7 @@ import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from "
 
 // import { UserContext } from "../../context/user.context";
 
-import './sign-up-form.styles.scss';
+import { SignUpContainer } from './sign-up-form.styles';
 
 const defaultFormValues = {
   displayName: '',
@@ -57,7 +57,7 @@ const SignUpForm = () => {
   }
 
   return (
-    <div className='sign-up-container'>
+    <SignUpContainer>
       <h2>Don't have an account?</h2>
       <span>Sign up with your email and password</span>
       <form action="" onSubmit={handleSubmit}>
@@ -98,7 +98,7 @@ const SignUpForm = () => {
         />
         <Button buttonType='submit' type="submit">Sign Up</Button>
       </form>
-    </div>
+    </SignUpContainer>
   )
 }
 
