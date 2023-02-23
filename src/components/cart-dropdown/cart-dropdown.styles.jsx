@@ -20,7 +20,7 @@ export const CartDropdownContainer = styled.div`
 `;
 
 export const CartItemContainer = styled.div`
-	overflow: scroll;
+	overflow: auto;
 `;
 
 export const EmptyMessage = styled.span`
